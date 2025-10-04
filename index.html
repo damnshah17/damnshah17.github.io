@@ -8,12 +8,12 @@
   <!-- <link rel="stylesheet" href="style.css" /> -->
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        /* ==================== CSS RESET & BASIC SETUP ==================== */
+  <style>
+    /* ==================== CSS RESET & BASIC SETUP ==================== */
 :root {
   --bg-dark: #0F172A;
   --bg-light: #1E293B;
+  --bg-dark-green: #0b300b; /* Bottle Green for Home section */
   --text-light: #E2E8F0;
   --text-secondary: #94A3B8;
   --primary: #006747; /* Binghamton Green */
@@ -30,7 +30,7 @@ body {
   font-family: 'Nunito Sans', sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-light);
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 .section {
@@ -42,6 +42,8 @@ body {
   padding: 6rem 2rem;
   box-sizing: border-box;
   position: relative;
+  /* FIX: Prevents fixed navbar from overlapping section titles on scroll */
+  scroll-margin-top: 70px; 
 }
 
 .container {
@@ -69,7 +71,7 @@ body {
   top: 0;
   left: 0;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* This centers the ul.nav-links inside */
   align-items: center;
   padding: 1rem 2rem;
   z-index: 1000;
@@ -77,7 +79,7 @@ body {
 }
 
 .navbar.scrolled {
-  background-color: rgba(15, 23, 42, 0.85); /* Semi-transparent dark bg */
+  background-color: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(10px);
   padding: 0.5rem 2rem;
   border-bottom: 1px solid var(--bg-light);
@@ -108,6 +110,7 @@ body {
 
 /* ==================== HOME SECTION ==================== */
 #home {
+  background-color: var(--bg-dark-green); /* Restored green background */
   text-align: center;
 }
 
@@ -120,13 +123,13 @@ body {
 .home-text .name {
   font-size: 5rem;
   font-weight: 700;
-  color: var(--primary);
+  color: #fff; /* Changed to white for better contrast on green */
   display: block;
   margin: 0.5rem 0;
 }
 
 .typewriter-container {
-    height: 50px; /* Give it a fixed height to prevent layout shifts */
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,17 +156,20 @@ body {
   color: var(--text-light);
   text-decoration: none;
   font-weight: bold;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--text-light);
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   transition: background-color 0.3s, color 0.3s;
+  display: flex; /* For aligning icon and text */
+  align-items: center;
+  gap: 0.75rem; /* Space between icon and text */
+  font-size: 1.1rem;
 }
 
 .home-links a:hover {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--text-light);
+  color: var(--bg-dark-green);
 }
-
 
 /* ==================== ABOUT SECTION ==================== */
 .about-container p {
@@ -192,6 +198,7 @@ body {
     bottom: 0;
     left: 50%;
     margin-left: -1.5px;
+    z-index: 0; /* Set z-index lower than content */
 }
 
 .timeline-item {
@@ -221,7 +228,7 @@ body {
     border: 3px solid var(--bg-dark);
     top: 30px;
     border-radius: 50%;
-    z-index: 1;
+    z-index: 2; /* Ensure dot is above the line */
 }
 
 .timeline-item:nth-child(odd) .timeline-dot {
@@ -237,6 +244,8 @@ body {
     background-color: var(--bg-light);
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative; /* FIX: Added for z-index to take effect */
+    z-index: 1; /* FIX: Ensures content is above the timeline line */
 }
 
 .timeline-content h3 {
@@ -289,14 +298,25 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
   transform: translateY(-10px);
 }
 
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
 .project-info {
   padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-info h3 {
@@ -307,12 +327,27 @@ body {
   color: var(--primary);
 }
 
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background-color: var(--bg-dark);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
 .project-info p {
     font-size: 1rem;
     line-height: 1.6;
-    height: 100px; /* Fixed height for description */
-    overflow: hidden;
     color: var(--text-secondary);
+    flex-grow: 1;
 }
 
 .view-project-btn {
@@ -326,6 +361,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-align: center;
 }
 
 .view-project-btn:hover {
@@ -372,7 +408,7 @@ body {
   height: auto;
 }
 #skills-list-mobile {
-    display: none; /* Hidden by default, shown on mobile */
+    display: none;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
@@ -423,7 +459,7 @@ body {
 
 /* ==================== MODAL STYLES ==================== */
 .modal-overlay {
-  display: none; /* Initially hidden */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -472,13 +508,17 @@ body {
   margin-top: 0;
   font-size: 2rem;
 }
-
+#modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
 #modal-details {
     text-align: left;
     padding-left: 1.2rem;
     margin: 1.5rem 0;
 }
-
 #modal-github-link {
   display: inline-block;
   margin-top: 1rem;
@@ -544,13 +584,13 @@ body {
 
   /* Skills on mobile */
   #skills-canvas-container {
-      display: none; /* Hide canvas on smaller screens */
+      display: none;
   }
   #skills-list-mobile {
-      display: flex; /* Show simple list instead */
+      display: flex;
   }
 }
-    </style>
+  </style>
 </head>
 
 <body>
@@ -574,9 +614,10 @@ body {
           <h2 id="role"></h2>
         </div>
         <div class="home-links">
-          <a href="https://github.com/your-github-username" target="_blank">GitHub</a>
-          <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank">LinkedIn</a>
-          <a href="Daaman Shah Resume.pdf" target="_blank">Resume</a>
+          <a href="https://github.com/your-github-username" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://leetcode.com/your-leetcode-username/" target="_blank"><i class="fas fa-code"></i> LeetCode</a>
+          <a href="Daaman Shah Resume.pdf" target="_blank"><i class="fas fa-file-alt"></i> Resume</a>
         </div>
       </div>
     </div>
@@ -688,6 +729,7 @@ body {
     <div class="modal-box">
       <span class="modal-close" id="modal-close">&times;</span>
       <h3 id="modal-title"></h3>
+      <div id="modal-tags"></div>
       <p id="modal-description"></p>
       <ul id="modal-details"></ul>
       <a href="#" id="modal-github-link" target="_blank">
@@ -734,17 +776,16 @@ body {
     }
 
     roleElement.innerHTML = displayText;
-    roleElement.style.animation = 'none'; // Stop blinking during typing
 
-    let typeSpeed = isDeleting ? 100 : 200;
+    let typeSpeed = isDeleting ? 75 : 150;
 
     if (!isDeleting && charIndex === currentRole.length) {
-      typeSpeed = 2000; // Pause at the end
+      typeSpeed = 2000;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       roleIndex = (roleIndex + 1) % roles.length;
-      typeSpeed = 500; // Pause before starting new word
+      typeSpeed = 500;
     }
 
     setTimeout(typeWriter, typeSpeed);
@@ -753,35 +794,66 @@ body {
 
 
   // ==================== PROJECTS DATA & DYNAMIC RENDERING ====================
-  const projects = [{
+  const projects = [
+    {
       title: "Real Time Transcription",
+      imageUrl: "https://placehold.co/400x300/006747/E2E8F0?text=AI+Project",
+      tags: ["Python", "TensorFlow", "Keras", "PyAudio"],
       description: "A hybrid system combining Faster Whisper for ASR with a custom ResNet CNN for speaker identification, achieving real-time performance.",
       details: [
         "Incorporated PyAudio for live audio capture and multithreading for concurrent processing.",
         "Achieved a robust F1-score of 0.945 and 91.7% accuracy across 7 speakers.",
         "Utilized MFCC feature extraction and noise augmentation for improved performance."
       ],
-      github: "#" // Add your GitHub link here
+      github: "#"
     },
     {
       title: "Admission Prediction Model",
+      imageUrl: "https://placehold.co/400x300/0F172A/E2E8F0?text=ML+Model",
+      tags: ["Python", "Scikit-Learn", "Seaborn", "Pandas"],
       description: "A machine learning model to predict university admission probabilities, demonstrating strong skills in data analysis and predictive modeling.",
       details: [
         "Used Seaborn for comprehensive data visualization and preprocessing.",
         "Applied Multiple Linear Regression to model feature relationships.",
         "Engineered features to improve overall prediction accuracy."
       ],
-      github: "#" // Add your GitHub link here
+      github: "#"
     },
     {
       title: "Tubescript Summarizer",
+      imageUrl: "https://placehold.co/400x300/1E293B/E2E8F0?text=Web+Extension",
+      tags: ["React", "TailwindCSS", "Python", "Flask"],
       description: "A user-friendly web extension for transcribing and summarizing video content, built with React, Tailwind CSS, and a Python RESTful API.",
       details: [
         "Led full-stack development in a team of 3.",
         "Utilized a Python RESTful API for efficient data acquisition of transcriptions.",
         "Built with Manifest V3 for modern browser compatibility and security."
       ],
-      github: "#" // Add your GitHub link here
+      github: "#"
+    },
+    {
+      title: "News Feed Aggregator",
+      imageUrl: "https://placehold.co/400x300/004a33/E2E8F0?text=Full-Stack+App",
+      tags: ["React", "Flask", "NLTK", "SQL"],
+      description: "A full-stack web application that aggregates news from various sources and uses NLP to categorize articles and provide personalized recommendations.",
+      details: [
+        "Developed a responsive front-end with React for a seamless user experience.",
+        "Built a RESTful API with Flask to handle data fetching and user authentication.",
+        "Implemented a content-based filtering algorithm using NLTK for topic modeling."
+      ],
+      github: "#"
+    },
+    {
+      title: "IoT Smart Garage Controller",
+      imageUrl: "https://placehold.co/400x300/94A3B8/0F172A?text=IoT+Project",
+      tags: ["Flutter", "Firebase", "Raspberry Pi", "Python"],
+      description: "A mobile application and hardware setup to control and monitor a garage door remotely, featuring real-time status updates and access logs.",
+      details: [
+        "Created a cross-platform mobile app with Flutter for both iOS and Android.",
+        "Used Firebase Realtime Database for instant data synchronization.",
+        "Programmed a Raspberry Pi in Python to interface with the garage door motor and sensors."
+      ],
+      github: "#"
     }
   ];
 
@@ -789,38 +861,43 @@ body {
   projects.forEach((project, index) => {
     const card = document.createElement('div');
     card.className = 'project-card';
+    
+    const tagsHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    
     card.innerHTML = `
-            <div class="project-info">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                <button class="view-project-btn" data-index="${index}">View Details</button>
-            </div>
-        `;
+        <img src="${project.imageUrl}" alt="${project.title} project image">
+        <div class="project-info">
+            <h3>${project.title}</h3>
+            <div class="project-tags">${tagsHTML}</div>
+            <p>${project.description}</p>
+            <button class="view-project-btn" data-index="${index}">View Details</button>
+        </div>
+    `;
     projectsGrid.appendChild(card);
   });
+
 
   // ==================== PROJECT SCROLLER LOGIC ====================
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
   let currentIndex = 0;
-  const cardWidth = 350 + 32; // Card width + margin
+  const cardWidth = 350 + 32;
 
   function updateCarousel() {
+    const maxIndex = projects.length - Math.floor(projectsGrid.parentElement.offsetWidth / cardWidth);
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
+    if (currentIndex < 0) currentIndex = 0;
     projectsGrid.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
   }
-
+  
   nextBtn.addEventListener('click', () => {
-    if (currentIndex < projects.length - 1) {
       currentIndex++;
       updateCarousel();
-    }
   });
 
   prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
       currentIndex--;
       updateCarousel();
-    }
   });
 
 
@@ -830,6 +907,7 @@ body {
   const modalDescription = document.getElementById('modal-description');
   const modalDetails = document.getElementById('modal-details');
   const modalGithubLink = document.getElementById('modal-github-link');
+  const modalTags = document.getElementById('modal-tags');
   const modalClose = document.getElementById('modal-close');
 
   document.querySelectorAll('.view-project-btn').forEach(button => {
@@ -841,19 +919,16 @@ body {
       modalDescription.textContent = project.description;
       modalDetails.innerHTML = project.details.map(detail => `<li>${detail}</li>`).join('');
       modalGithubLink.href = project.github;
+      modalTags.innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
 
       modalOverlay.classList.add('active');
     });
   });
 
-  const closeModal = () => {
-    modalOverlay.classList.remove('active');
-  };
+  const closeModal = () => modalOverlay.classList.remove('active');
   modalClose.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-      closeModal();
-    }
+    if (e.target === modalOverlay) closeModal();
   });
 
 
@@ -866,7 +941,6 @@ body {
         'Git', 'GitHub', 'Agile', 'SCRUM', 'Jira', 'Tableau', 'Power BI'
     ];
     
-    // For mobile fallback
     const skillsListMobile = document.getElementById('skills-list-mobile');
     skills.forEach(skill => {
         const badge = document.createElement('div');
@@ -875,23 +949,17 @@ body {
         skillsListMobile.appendChild(badge);
     });
 
-    // TagCanvas library logic
     try {
         const canvas = document.getElementById('skills-canvas');
         const canvasContainer = document.getElementById('skills-canvas-container');
-        
-        // Adjust canvas size based on its container
         canvas.width = canvasContainer.offsetWidth;
-        canvas.height = canvasContainer.offsetWidth; // Make it a square
+        canvas.height = canvasContainer.offsetWidth;
 
         let tagListHTML = '<ul>';
-        skills.forEach(skill => {
-            tagListHTML += `<li><a href="#">${skill}</a></li>`;
-        });
+        skills.forEach(skill => tagListHTML += `<li><a href="#">${skill}</a></li>`);
         tagListHTML += '</ul>';
         canvas.innerHTML = tagListHTML;
 
-        // Dynamically load and initialize TagCanvas
         const script = document.createElement('script');
         script.src = 'https://www.goat1000.com/tagcanvas.min.js';
         script.onload = () => {
@@ -903,12 +971,12 @@ body {
                 maxSpeed: 0.05,
                 initial: [0.05, -0.05],
                 weight: true,
+                zoomEnabled: false, // FIX: Disabled magnification
             });
         };
         document.body.appendChild(script);
 
     } catch(e) {
-        // Fallback for IE or if canvas is not supported
         document.getElementById('skills-canvas-container').style.display = 'none';
         skillsListMobile.style.display = 'flex';
     }
