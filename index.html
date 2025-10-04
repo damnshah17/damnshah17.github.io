@@ -1,289 +1,919 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daaman Shah | Portfolio</title>
-    <!-- Google Fonts -->
-      <link rel="stylesheet" href="style2.css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daaman Shah | Portfolio</title>
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <style>
+        /* ==================== CSS RESET & BASIC SETUP ==================== */
+:root {
+  --bg-dark: #0F172A;
+  --bg-light: #1E293B;
+  --text-light: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --primary: #006747; /* Binghamton Green */
+  --primary-hover: #004a33;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: var(--primary);
+}
+
+
+/* ==================== NAVIGATION ==================== */
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(15, 23, 42, 0.85); /* Semi-transparent dark bg */
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid var(--bg-light);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+
+/* ==================== HOME SECTION ==================== */
+#home {
+  text-align: center;
+}
+
+.home-text h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.home-text .name {
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.typewriter-container {
+    height: 50px; /* Give it a fixed height to prevent layout shifts */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+#role {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text-light);
+  border-right: 2px solid var(--text-light);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.home-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.home-links a:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+
+/* ==================== ABOUT SECTION ==================== */
+.about-container p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto 1.5rem auto;
+  text-align: center;
+}
+
+
+/* ==================== EXPERIENCE SECTION ==================== */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--bg-light);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+.timeline-item {
+    padding: 1rem 3rem;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+    padding-right: 4rem;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+    padding-left: 4rem;
+}
+
+.timeline-dot {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: var(--primary);
+    border: 3px solid var(--bg-dark);
+    top: 30px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -8px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -8px;
+}
+
+.timeline-content {
+    padding: 1.5rem;
+    background-color: var(--bg-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+.timeline-company {
+    font-weight: bold;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+.timeline-date {
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.timeline-content ul {
+    padding-left: 1.2rem;
+    text-align: left;
+}
+.timeline-content ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* ==================== PROJECTS SECTION ==================== */
+.projects-container {
+  position: relative;
+}
+
+.scroller-container {
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.project-card {
+  width: 350px;
+  margin: 0 1rem;
+  flex-shrink: 0;
+  background-color: var(--bg-light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+}
+
+.project-info {
+  padding: 1.5rem;
+}
+
+.project-info h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.project-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+    height: 100px; /* Fixed height for description */
+    overflow: hidden;
+    color: var(--text-secondary);
+}
+
+.view-project-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-project-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.scroller-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(30, 41, 59, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.scroller-btn:hover {
+  background-color: var(--primary);
+}
+
+#prev-btn {
+  left: 0px;
+}
+
+#next-btn {
+  right: 0px;
+}
+
+
+/* ==================== SKILLS SECTION ==================== */
+#skills-canvas-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+#skills-canvas {
+  width: 100%;
+  height: auto;
+}
+#skills-list-mobile {
+    display: none; /* Hidden by default, shown on mobile */
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 2rem;
+}
+.skill-badge {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* ==================== CONTACT SECTION ==================== */
+#contact .container {
+  max-width: 600px;
+}
+.contact-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.contact-info {
+  margin-bottom: 2rem;
+}
+.contact-link {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-link:hover {
+  color: var(--primary);
+}
+.contact-link i {
+  margin-right: 0.5rem;
+  color: var(--primary);
+}
+.social-links a {
+  color: var(--text-secondary);
+  font-size: 2.5rem;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+.social-links a:hover {
+  color: var(--primary);
+}
+
+
+/* ==================== MODAL STYLES ==================== */
+.modal-overlay {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-box {
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  line-height: 1;
+}
+
+#modal-title {
+  color: var(--primary);
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+#modal-details {
+    text-align: left;
+    padding-left: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+#modal-github-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+#modal-github-link:hover {
+    background-color: #555;
+}
+
+
+/* ==================== RESPONSIVENESS (MEDIA QUERIES) ==================== */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+  .home-text .name {
+    font-size: 3.5rem;
+  }
+  #role {
+    font-size: 1.5rem;
+  }
+  .nav-links {
+      gap: 0.5rem;
+  }
+  .nav-links a {
+      font-size: 1rem;
+      padding: 0.5rem;
+  }
+
+  /* Timeline on mobile */
+  .timeline::after {
+    left: 20px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 4rem;
+    padding-right: 1rem;
+  }
+  .timeline-item:nth-child(odd), .timeline-item:nth-child(even) {
+    left: 0;
+    text-align: left;
+  }
+  .timeline-dot {
+    left: 12px;
+  }
+
+  /* Projects on mobile */
+  .project-card {
+      width: 300px;
+  }
+  .scroller-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+  }
+  #prev-btn { left: 5px; }
+  #next-btn { right: 5px; }
+
+  /* Skills on mobile */
+  #skills-canvas-container {
+      display: none; /* Hide canvas on smaller screens */
+  }
+  #skills-list-mobile {
+      display: flex; /* Show simple list instead */
+  }
+}
+    </style>
 </head>
 
 <body>
-    <nav class="navbar" id="navnav">
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <nav class="navbar" id="navbar">
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section id="home" class="full-screen" style="background-color:rgb(11, 48, 11);">
-        <div class="home-container">
-            <div class="home-text">
-                <h1 style="font-size: 40px; margin: 10px; font-weight: 100;">Hello, I'm <br>
-                <span style="font-size: 60px;font-weight: 700; color:white;">Daaman Shah</span></h1>
-                <h2 class="typewriter" id="role"></h2>
-                <div class="home-links">
-                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i> LeetCode</a>
-                    <a href="#" target="_blank">Resume</a>
+  <section id="home" class="section">
+    <div class="home-container">
+      <div class="home-text">
+        <h1>Hello, I'm</h1>
+        <span class="name">Daaman Shah</span>
+        <div class="typewriter-container">
+          <h2 id="role"></h2>
+        </div>
+        <div class="home-links">
+          <a href="https://github.com/your-github-username" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank">LinkedIn</a>
+          <a href="Daaman Shah Resume.pdf" target="_blank">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container about-container">
+      <h2 class="section-title">About Me</h2>
+      <p>
+        Driven and creative Full Stack Developer and Machine Learning enthusiast with a unique blend of tech expertise and martial arts discipline. Currently pursuing a Master's in Computer Science at Binghamton University.
+      </p>
+      <p>
+        My passion lies in building purposeful tech that makes a difference. I've led several innovative projects, including a deep learning-based speech recognition system that earned publication in an international journal.
+      </p>
+      <p>
+        Outside of coding, I’ve dedicated over 13 years to karate, earning a 1st Dan black belt. I love combining logic with creativity, whether it's through AI projects, public speaking, or community outreach. My journey is shaped by curiosity, a strong work ethic, and a desire to make an impact.
+      </p>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Tech Support</h3>
+                    <p class="timeline-company">Binghamton University - ITS Pods | New York, US</p>
+                    <p class="timeline-date">June 2025 - Present</p>
+                    <ul>
+                        <li>Diagnose and resolve 100+ weekly support requests involving software, connectivity, and network issues.</li>
+                        <li>Configure and maintain desktops and manage 40+ printers and peripherals.</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="about" class="section" >
-        <div class="container about-container">
-             <h2 class="section-title">👋 About Me</h2>
-             <p>A driven and creative Full Stack Developer and Machine Learning enthusiast, with a unique blend of tech expertise and martial arts discipline. My passion lies in building purposeful tech that makes a difference.</p>
-        </div>
-    </section>
-
-    <section id="projects" class="section" >
-        <div class="container projects-container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="scroller-container">
-                <div class="projects-grid">
-                    <!-- Cards are duplicated by JS for infinite scroll effect -->
-                    <div class="project-card">
-                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+One" alt="Project 1">
-                        <div class="project-info">
-                            <h3>Speech Recognition System</h3>
-                            <a class="view-project-btn" data-title="Speech Recognition System" data-description="A deep learning-based system to support the hearing-impaired." data-github-link="#">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Two" alt="Project 2">
-                        <div class="project-info">
-                            <h3>E-commerce Platform</h3>
-                            <a class="view-project-btn" data-title="E-commerce Platform" data-description="A full-featured online store built with the MERN stack." data-github-link="#">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Three" alt="Project 3">
-                        <div class="project-info">
-                            <h3>Portfolio Website</h3>
-                            <a class="view-project-btn" data-title="Portfolio Website" data-description="This very website, designed to be clean and responsive." data-github-link="#">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Four" alt="Project 4">
-                        <div class="project-info">
-                            <h3>Data Viz Dashboard</h3>
-                             <a class="view-project-btn" data-title="Data Visualization Dashboard" data-description="An interactive dashboard for visualizing complex datasets." data-github-link="#">View Project</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Five" alt="Project 5">
-                        <div class="project-info">
-                            <h3>AI Chatbot</h3>
-                            <a class="view-project-btn" data-title="AI Chatbot" data-description="A conversational AI built with Python and NLP libraries." data-github-link="#">View Project</a>
-                        </div>
-                    </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>AI/ML Intern</h3>
+                    <p class="timeline-company">Edunet Foundation - SAP | Gujarat, India</p>
+                    <p class="timeline-date">Jan 2024 - Apr 2024</p>
+                    <ul>
+                        <li>Designed deep learning models using TensorFlow, OpenCV, and Keras, achieving over 90% accuracy.</li>
+                        <li>Accelerated development by 40% by delivering a fully functional AI communication system.</li>
+                    </ul>
                 </div>
             </div>
-            <button id="prev-btn" class="scroller-btn"><i class="fas fa-chevron-left"></i></button>
-            <button id="next-btn" class="scroller-btn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </section>
-
-    <section id="skills" class="section" >
-        <canvas id="skills-canvas"></canvas>
-        <div class="container">
-             <h2 class="section-title">My Skills</h2>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <form class="contact-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <div class="modal-overlay" id="project-modal">
-        <div class="modal-box">
-            <span class="modal-close" id="modal-close-btn">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p id="modal-description"></p>
-            <a href="#" id="modal-github-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Full Stack Developer Intern</h3>
+                    <p class="timeline-company">Konze Pvt Ltd | Gujarat, India</p>
+                    <p class="timeline-date">Aug 2023 - Dec 2023</p>
+                    <ul>
+                        <li>Engineered and deployed core features for a cloud-based CRM using React.js and Node.js.</li>
+                        <li>Automated client communications by integrating third-party email/SMS APIs, reducing manual follow-ups by 30%.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            const navbar = document.getElementById('navnav');
-            window.addEventListener('scroll', () => {
-                navbar.classList.toggle('scrolled', window.scrollY > 50);
-            });
-
-            const roles = [
-                "Full Stack Developer",
-                "ML Engineer",
-                "Software Developer"
-                ];
-
-                let index = 0;
-                const roleElement = document.getElementById("role");
-
-                function typeRole() {
-                roleElement.textContent = roles[index];
-                index = (index + 1) % roles.length;
-                }
-
-                typeRole();
-                setInterval(typeRole, 4000);
+  </section>
 
 
-            const scroller = document.querySelector('.scroller-container');
-                window.addEventListener('scroll', () => {
-                    const header = document.getElementById('navnav');
-                    const scrollPosition = window.scrollY;
+  <section id="projects" class="section">
+    <div class="container projects-container">
+      <h2 class="section-title">Projects</h2>
+      <div class="scroller-container">
+        <div class="projects-grid" id="projects-grid">
+          </div>
+      </div>
+      <button class="scroller-btn" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+      <button class="scroller-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </section>
 
-                    // Check if the scroll position is past a certain point (e.g., 200 pixels)
-                    if (scrollPosition > 200) {
-                        header.classList.add('scrolled'); // Add a class when scrolled
-                    } else {
-                        header.classList.remove('scrolled'); // Remove the class when scrolled back up
-                    }
-                });
-            
-            const modal = document.getElementById('project-modal');
-            document.querySelectorAll('.view-project-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.getElementById('modal-title').textContent = btn.dataset.title;
-                    document.getElementById('modal-description').textContent = btn.dataset.description;
-                    document.getElementById('modal-github-link').href = btn.dataset.githubLink;
-                    modal.style.display = 'flex';
-                });
-            });
+  <section id="skills" class="section">
+    <h2 class="section-title">Skills</h2>
+    <div id="skills-canvas-container">
+      <canvas width="1200" height="1200" id="skills-canvas">
+        <p>Your browser does not support the HTML canvas tag.</p>
+      </canvas>
+    </div>
+    <div id="skills-list-mobile">
+        </div>
+  </section>
 
-            const closeModal = () => modal.style.display = 'none';
-            document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 
-            // --- Interactive Skills Hexagon Canvas ---
-            const canvas = document.getElementById('skills-canvas');
-            if (canvas) {
-                const ctx = canvas.getContext('2d');
-                let hexagons = [];
-                const skills = ['JavaScript', 'HTML5', 'CSS3', 'React', 'Node.js', 'Python', 'TensorFlow', 'MongoDB', 'Git', 'Docker', 'AWS', 'SQL', 'C++', 'Java', 'PyTorch', 'Next.js', 'Vue.js', 'Sass'];
-                let mouse = { x: undefined, y: undefined };
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="contact-subtitle">
+        Have a question or want to work together? Feel free to reach out!
+      </p>
+      <div class="contact-info">
+        <a href="mailto:dshah13@binghamton.edu" class="contact-link">
+          <i class="fas fa-envelope"></i> dshah13@binghamton.edu
+        </a>
+      </div>
+      <div class="social-links">
+        <a href="https://github.com/your-github-username" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/your-linkedin-profile/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </section>
 
-                const resizeCanvas = () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                };
-                window.addEventListener('resize', resizeCanvas);
-                resizeCanvas();
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box">
+      <span class="modal-close" id="modal-close">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-description"></p>
+      <ul id="modal-details"></ul>
+      <a href="#" id="modal-github-link" target="_blank">
+        <i class="fab fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </div>
 
-                canvas.addEventListener('mousemove', (e) => {
-                    const rect = canvas.getBoundingClientRect();
-                    mouse.x = e.clientX - rect.left;
-                    mouse.y = e.clientY - rect.top;
-                });
-                 canvas.addEventListener('mouseleave', () => {
-                    mouse.x = undefined;
-                    mouse.y = undefined;
-                });
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-                class Hexagon {
-                    constructor(x, y, size, skill) {
-                        this.x = x;
-                        this.y = y;
-                        this.size = size;
-                        this.skill = skill;
-                        this.angle = Math.random() * Math.PI * 2;
-                        this.speed = (Math.random() * 0.3) + 0.1;
-                        this.isHovered = false;
-                    }
+  // ==================== NAVBAR SCROLL EFFECT ====================
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
 
-                    draw() {
-                        ctx.beginPath();
-                        for (let i = 0; i < 6; i++) {
-                            let angle = (Math.PI / 3) * i;
-                            let x_i = this.x + this.size * Math.cos(angle);
-                            let y_i = this.y + this.size * Math.sin(angle);
-                            ctx.lineTo(x_i, y_i);
-                        }
-                        ctx.closePath();
+  // ==================== TYPEWRITER EFFECT ====================
+  const roleElement = document.getElementById('role');
+  const roles = [
+    "Full Stack Developer",
+    "AI/ML Enthusiast",
+    "Computer Science Graduate Student",
+    "Tech Innovator"
+  ];
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
 
-                        if(this.isHovered) {
-                            ctx.fillStyle = 'rgba(0, 103, 71, 0.9)';
-                            ctx.fill();
-                            ctx.strokeStyle = '#E2E8F0';
-                        } else {
-                            ctx.fillStyle = 'rgba(30, 41, 59, 0.8)';
-                            ctx.fill();
-                            ctx.strokeStyle = 'rgba(0, 103, 71, 0.5)';
-                        }
-                        ctx.lineWidth = 2;
-                        ctx.stroke();
+  function typeWriter() {
+    const currentRole = roles[roleIndex];
+    let displayText = '';
 
-                        ctx.fillStyle = this.isHovered ? '#E2E8F0' : '#94A3B8';
-                        ctx.font = `bold ${this.size / 4.5}px "Nunito Sans"`;
-                        ctx.textAlign = 'center';
-                        ctx.textBaseline = 'middle';
-                        ctx.fillText(this.skill, this.x, this.y);
-                    }
+    if (isDeleting) {
+      displayText = currentRole.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      displayText = currentRole.substring(0, charIndex + 1);
+      charIndex++;
+    }
 
-                    update() {
-                        this.x += this.speed * Math.cos(this.angle);
-                        this.y += this.speed * Math.sin(this.angle);
+    roleElement.innerHTML = displayText;
+    roleElement.style.animation = 'none'; // Stop blinking during typing
 
-                        if (this.x < -this.size) this.x = canvas.width + this.size;
-                        if (this.x > canvas.width + this.size) this.x = -this.size;
-                        if (this.y < -this.size) this.y = canvas.height + this.size;
-                        if (this.y > canvas.height + this.size) this.y = -this.size;
+    let typeSpeed = isDeleting ? 100 : 200;
 
-                        const dist = Math.hypot(this.x - mouse.x, this.y - mouse.y);
-                        this.isHovered = dist < this.size;
-                    }
-                }
+    if (!isDeleting && charIndex === currentRole.length) {
+      typeSpeed = 2000; // Pause at the end
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      typeSpeed = 500; // Pause before starting new word
+    }
 
-                const initHexagons = () => {
-                    hexagons = [];
-                    const numHexagons = 60; // Increased hexagon count
-                    for (let i = 0; i < numHexagons; i++) {
-                        hexagons.push(new Hexagon(
-                            Math.random() * canvas.width,
-                            Math.random() * canvas.height,
-                            (Math.random() * 50) + 60,
-                            skills[i % skills.length]
-                        ));
-                    }
-                };
-                
-                const animateHexagons = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    hexagons.forEach(hex => {
-                        hex.update();
-                        hex.draw();
-                    });
-                    requestAnimationFrame(animateHexagons);
-                };
+    setTimeout(typeWriter, typeSpeed);
+  }
+  typeWriter();
 
-                initHexagons();
-                animateHexagons();
-                window.addEventListener('resize', initHexagons);
-            }
+
+  // ==================== PROJECTS DATA & DYNAMIC RENDERING ====================
+  const projects = [{
+      title: "Real Time Transcription",
+      description: "A hybrid system combining Faster Whisper for ASR with a custom ResNet CNN for speaker identification, achieving real-time performance.",
+      details: [
+        "Incorporated PyAudio for live audio capture and multithreading for concurrent processing.",
+        "Achieved a robust F1-score of 0.945 and 91.7% accuracy across 7 speakers.",
+        "Utilized MFCC feature extraction and noise augmentation for improved performance."
+      ],
+      github: "#" // Add your GitHub link here
+    },
+    {
+      title: "Admission Prediction Model",
+      description: "A machine learning model to predict university admission probabilities, demonstrating strong skills in data analysis and predictive modeling.",
+      details: [
+        "Used Seaborn for comprehensive data visualization and preprocessing.",
+        "Applied Multiple Linear Regression to model feature relationships.",
+        "Engineered features to improve overall prediction accuracy."
+      ],
+      github: "#" // Add your GitHub link here
+    },
+    {
+      title: "Tubescript Summarizer",
+      description: "A user-friendly web extension for transcribing and summarizing video content, built with React, Tailwind CSS, and a Python RESTful API.",
+      details: [
+        "Led full-stack development in a team of 3.",
+        "Utilized a Python RESTful API for efficient data acquisition of transcriptions.",
+        "Built with Manifest V3 for modern browser compatibility and security."
+      ],
+      github: "#" // Add your GitHub link here
+    }
+  ];
+
+  const projectsGrid = document.getElementById('projects-grid');
+  projects.forEach((project, index) => {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML = `
+            <div class="project-info">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <button class="view-project-btn" data-index="${index}">View Details</button>
+            </div>
+        `;
+    projectsGrid.appendChild(card);
+  });
+
+  // ==================== PROJECT SCROLLER LOGIC ====================
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  let currentIndex = 0;
+  const cardWidth = 350 + 32; // Card width + margin
+
+  function updateCarousel() {
+    projectsGrid.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < projects.length - 1) {
+      currentIndex++;
+      updateCarousel();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  });
+
+
+  // ==================== MODAL LOGIC ====================
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const modalDetails = document.getElementById('modal-details');
+  const modalGithubLink = document.getElementById('modal-github-link');
+  const modalClose = document.getElementById('modal-close');
+
+  document.querySelectorAll('.view-project-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const projectIndex = e.target.getAttribute('data-index');
+      const project = projects[projectIndex];
+
+      modalTitle.textContent = project.title;
+      modalDescription.textContent = project.description;
+      modalDetails.innerHTML = project.details.map(detail => `<li>${detail}</li>`).join('');
+      modalGithubLink.href = project.github;
+
+      modalOverlay.classList.add('active');
+    });
+  });
+
+  const closeModal = () => {
+    modalOverlay.classList.remove('active');
+  };
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+      closeModal();
+    }
+  });
+
+
+  // ==================== 3D SKILLS GLOBE ====================
+    const skills = [
+        'Python', 'Java', 'C', 'SQL', 'JavaScript', 'TypeScript', 'HTML/CSS',
+        'React', 'Next.js', 'AngularJS', '.NET', 'Flutter', 'Flask', 'Docker',
+        'Linux', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'OpenCV', 'Hugging Face',
+        'Pandas', 'NumPy', 'MySQL', 'MongoDB', 'Firebase', 'AWS S3',
+        'Git', 'GitHub', 'Agile', 'SCRUM', 'Jira', 'Tableau', 'Power BI'
+    ];
+    
+    // For mobile fallback
+    const skillsListMobile = document.getElementById('skills-list-mobile');
+    skills.forEach(skill => {
+        const badge = document.createElement('div');
+        badge.className = 'skill-badge';
+        badge.textContent = skill;
+        skillsListMobile.appendChild(badge);
+    });
+
+    // TagCanvas library logic
+    try {
+        const canvas = document.getElementById('skills-canvas');
+        const canvasContainer = document.getElementById('skills-canvas-container');
+        
+        // Adjust canvas size based on its container
+        canvas.width = canvasContainer.offsetWidth;
+        canvas.height = canvasContainer.offsetWidth; // Make it a square
+
+        let tagListHTML = '<ul>';
+        skills.forEach(skill => {
+            tagListHTML += `<li><a href="#">${skill}</a></li>`;
         });
-    </script>
+        tagListHTML += '</ul>';
+        canvas.innerHTML = tagListHTML;
+
+        // Dynamically load and initialize TagCanvas
+        const script = document.createElement('script');
+        script.src = 'https://www.goat1000.com/tagcanvas.min.js';
+        script.onload = () => {
+            TagCanvas.Start('skills-canvas', '', {
+                textColour: '#b2f5ea',
+                outlineColour: 'transparent',
+                reverse: true,
+                depth: 0.8,
+                maxSpeed: 0.05,
+                initial: [0.05, -0.05],
+                weight: true,
+            });
+        };
+        document.body.appendChild(script);
+
+    } catch(e) {
+        // Fallback for IE or if canvas is not supported
+        document.getElementById('skills-canvas-container').style.display = 'none';
+        skillsListMobile.style.display = 'flex';
+    }
+});
+  </script>
 </body>
+
 </html>
