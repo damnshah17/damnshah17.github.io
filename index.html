@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daaman Shah | Portfolio</title>
+    <!-- Google Fonts -->
+      <link rel="stylesheet" href="style2.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+
+</head>
+
+<body>
+    <nav class="navbar" id="navnav">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="full-screen" style="background-color:rgb(11, 48, 11);">
+        <div class="home-container">
+            <div class="home-text">
+                <h1 style="font-size: 40px; margin: 10px; font-weight: 100;">Hello, I'm <br>
+                <span style="font-size: 60px;font-weight: 700; color:white;">Daaman Shah</span></h1>
+                <h2 class="typewriter" id="role"></h2>
+                <div class="home-links">
+                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i> LeetCode</a>
+                    <a href="#" target="_blank">Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section" >
+        <div class="container about-container">
+             <h2 class="section-title">👋 About Me</h2>
+             <p>A driven and creative Full Stack Developer and Machine Learning enthusiast, with a unique blend of tech expertise and martial arts discipline. My passion lies in building purposeful tech that makes a difference.</p>
+        </div>
+    </section>
+
+    <section id="projects" class="section" >
+        <div class="container projects-container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="scroller-container">
+                <div class="projects-grid">
+                    <!-- Cards are duplicated by JS for infinite scroll effect -->
+                    <div class="project-card">
+                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+One" alt="Project 1">
+                        <div class="project-info">
+                            <h3>Speech Recognition System</h3>
+                            <a class="view-project-btn" data-title="Speech Recognition System" data-description="A deep learning-based system to support the hearing-impaired." data-github-link="#">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Two" alt="Project 2">
+                        <div class="project-info">
+                            <h3>E-commerce Platform</h3>
+                            <a class="view-project-btn" data-title="E-commerce Platform" data-description="A full-featured online store built with the MERN stack." data-github-link="#">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Three" alt="Project 3">
+                        <div class="project-info">
+                            <h3>Portfolio Website</h3>
+                            <a class="view-project-btn" data-title="Portfolio Website" data-description="This very website, designed to be clean and responsive." data-github-link="#">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Four" alt="Project 4">
+                        <div class="project-info">
+                            <h3>Data Viz Dashboard</h3>
+                             <a class="view-project-btn" data-title="Data Visualization Dashboard" data-description="An interactive dashboard for visualizing complex datasets." data-github-link="#">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://placehold.co/600x400/006747/FFFFFF?text=Project+Five" alt="Project 5">
+                        <div class="project-info">
+                            <h3>AI Chatbot</h3>
+                            <a class="view-project-btn" data-title="AI Chatbot" data-description="A conversational AI built with Python and NLP libraries." data-github-link="#">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="prev-btn" class="scroller-btn"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-btn" class="scroller-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <section id="skills" class="section" >
+        <canvas id="skills-canvas"></canvas>
+        <div class="container">
+             <h2 class="section-title">My Skills</h2>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+         <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal-box">
+            <span class="modal-close" id="modal-close-btn">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <a href="#" id="modal-github-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View on GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const navbar = document.getElementById('navnav');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            const roles = [
+                "Full Stack Developer",
+                "ML Engineer",
+                "Software Developer"
+                ];
+
+                let index = 0;
+                const roleElement = document.getElementById("role");
+
+                function typeRole() {
+                roleElement.textContent = roles[index];
+                index = (index + 1) % roles.length;
+                }
+
+                typeRole();
+                setInterval(typeRole, 4000);
+
+
+            const scroller = document.querySelector('.scroller-container');
+                window.addEventListener('scroll', () => {
+                    const header = document.getElementById('navnav');
+                    const scrollPosition = window.scrollY;
+
+                    // Check if the scroll position is past a certain point (e.g., 200 pixels)
+                    if (scrollPosition > 200) {
+                        header.classList.add('scrolled'); // Add a class when scrolled
+                    } else {
+                        header.classList.remove('scrolled'); // Remove the class when scrolled back up
+                    }
+                });
+            
+            const modal = document.getElementById('project-modal');
+            document.querySelectorAll('.view-project-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.getElementById('modal-title').textContent = btn.dataset.title;
+                    document.getElementById('modal-description').textContent = btn.dataset.description;
+                    document.getElementById('modal-github-link').href = btn.dataset.githubLink;
+                    modal.style.display = 'flex';
+                });
+            });
+
+            const closeModal = () => modal.style.display = 'none';
+            document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+            // --- Interactive Skills Hexagon Canvas ---
+            const canvas = document.getElementById('skills-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let hexagons = [];
+                const skills = ['JavaScript', 'HTML5', 'CSS3', 'React', 'Node.js', 'Python', 'TensorFlow', 'MongoDB', 'Git', 'Docker', 'AWS', 'SQL', 'C++', 'Java', 'PyTorch', 'Next.js', 'Vue.js', 'Sass'];
+                let mouse = { x: undefined, y: undefined };
+
+                const resizeCanvas = () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                };
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+
+                canvas.addEventListener('mousemove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouse.x = e.clientX - rect.left;
+                    mouse.y = e.clientY - rect.top;
+                });
+                 canvas.addEventListener('mouseleave', () => {
+                    mouse.x = undefined;
+                    mouse.y = undefined;
+                });
+
+                class Hexagon {
+                    constructor(x, y, size, skill) {
+                        this.x = x;
+                        this.y = y;
+                        this.size = size;
+                        this.skill = skill;
+                        this.angle = Math.random() * Math.PI * 2;
+                        this.speed = (Math.random() * 0.3) + 0.1;
+                        this.isHovered = false;
+                    }
+
+                    draw() {
+                        ctx.beginPath();
+                        for (let i = 0; i < 6; i++) {
+                            let angle = (Math.PI / 3) * i;
+                            let x_i = this.x + this.size * Math.cos(angle);
+                            let y_i = this.y + this.size * Math.sin(angle);
+                            ctx.lineTo(x_i, y_i);
+                        }
+                        ctx.closePath();
+
+                        if(this.isHovered) {
+                            ctx.fillStyle = 'rgba(0, 103, 71, 0.9)';
+                            ctx.fill();
+                            ctx.strokeStyle = '#E2E8F0';
+                        } else {
+                            ctx.fillStyle = 'rgba(30, 41, 59, 0.8)';
+                            ctx.fill();
+                            ctx.strokeStyle = 'rgba(0, 103, 71, 0.5)';
+                        }
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+
+                        ctx.fillStyle = this.isHovered ? '#E2E8F0' : '#94A3B8';
+                        ctx.font = `bold ${this.size / 4.5}px "Nunito Sans"`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(this.skill, this.x, this.y);
+                    }
+
+                    update() {
+                        this.x += this.speed * Math.cos(this.angle);
+                        this.y += this.speed * Math.sin(this.angle);
+
+                        if (this.x < -this.size) this.x = canvas.width + this.size;
+                        if (this.x > canvas.width + this.size) this.x = -this.size;
+                        if (this.y < -this.size) this.y = canvas.height + this.size;
+                        if (this.y > canvas.height + this.size) this.y = -this.size;
+
+                        const dist = Math.hypot(this.x - mouse.x, this.y - mouse.y);
+                        this.isHovered = dist < this.size;
+                    }
+                }
+
+                const initHexagons = () => {
+                    hexagons = [];
+                    const numHexagons = 60; // Increased hexagon count
+                    for (let i = 0; i < numHexagons; i++) {
+                        hexagons.push(new Hexagon(
+                            Math.random() * canvas.width,
+                            Math.random() * canvas.height,
+                            (Math.random() * 50) + 60,
+                            skills[i % skills.length]
+                        ));
+                    }
+                };
+                
+                const animateHexagons = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    hexagons.forEach(hex => {
+                        hex.update();
+                        hex.draw();
+                    });
+                    requestAnimationFrame(animateHexagons);
+                };
+
+                initHexagons();
+                animateHexagons();
+                window.addEventListener('resize', initHexagons);
+            }
+        });
+    </script>
+</body>
+</html>
